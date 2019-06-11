@@ -12,7 +12,17 @@ namespace MyHubStudents.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            List<Students> data = new List<Students>();
+            Random rnd = new Random();
+            for (int i = 1; i<8; i++)
+            {
+                data.Add(new Students()
+                {
+                    Name = "Class-" + i.ToString(),
+                    Id = rnd.Next(10, 50)
+                });
+            }
+            return View(data);
         }
 
         public IActionResult Privacy()

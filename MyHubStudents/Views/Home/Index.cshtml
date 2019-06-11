@@ -1,8 +1,46 @@
-﻿@{
+﻿@model List<Students>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table class="table table-bordered table-responsive table-hover">
+
+    <thead>
+        <tr>
+            <th>Class</th>
+            <th>Students</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+         <tr>
+             <td>@c.Name</td>
+             <td>@c.Id</td>
+         </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total</td>
+            <td>@Model.Sum(i => i.Id)</td>
+        </tr>
+        <tr>
+            <td>Count</td>
+            <td>@Model.Count()</td>
+        </tr>
+        <tr>
+            <td>Avg</td>
+            <td>@Model.Average(i => i.Id).ToString("0.00")</td>
+        </tr>
+        <tr>
+            <td>Min</td>
+            <td>@Model.Min(i => i.Id)</td>
+        </tr>
+        <tr>
+            <td>Max</td>
+            <td>@Model.Max(i => i.Id)</td>
+        </tr>
+    </tfoot>
+ </table>
